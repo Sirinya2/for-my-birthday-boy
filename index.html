@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>MY SUPERHERO 🦇 Classified Birthday Mission for Himanshu (Pookie)</title>
+  
+  <!-- Google Fonts: Comic, Cinematic Hero, Handwritten & Novel Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Cinzel:wght@500;700;900&family=Caveat:wght@600;700&family=Comic+Neue:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&family=Special+Elite&display=swap" rel="stylesheet">
+  
+  <!-- Canvas Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dark-theme">
+
+  <!-- ============================================== -->
+  <!-- TOP CONTROL HUD / MISSION TRACKER & AUDIO BAR  -->
+  <!-- ============================================== -->
+  <header class="top-nav" id="topNav">
+    <div class="mission-badge" id="missionBadge">
+      <span class="badge-icon">🦇</span>
+      <span class="badge-text" id="badgeText">HERO PROTOCOL</span>
+    </div>
+    
+    <div class="chapter-tracker" id="chapterTracker">
+      <span class="chapter-dot active" data-page="page1" title="The Hero"></span>
+      <span class="chapter-dot" data-page="page2" title="Mission Check"></span>
+      <span class="chapter-dot" data-page="page3" title="Memory Check"></span>
+      <span class="chapter-dot" data-page="chapter1" title="Chapter 01"></span>
+      <span class="chapter-dot" data-page="chapter2" title="Chapter 02"></span>
+      <span class="chapter-dot" data-page="chapter3" title="Chapter 03"></span>
+      <span class="chapter-dot" data-page="chapter4" title="Chapter 04"></span>
+      <span class="chapter-dot" data-page="chapter5" title="Chapter 05"></span>
+      <span class="chapter-dot" data-page="finalChapter" title="The Last Chapter"></span>
+    </div>
+
+    <div class="nav-controls">
+      <button class="hud-btn" id="soundToggleBtn" title="Toggle Sound FX">
+        <span id="soundIcon">🔊</span>
+      </button>
+      <button class="hud-btn" id="bgmToggleBtn" title="Toggle Atmospheric Theme">
+        <span id="bgmIcon">🎵</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============================================== -->
+  <!-- DYNAMIC BACKGROUND CANVAS & ATMOSPHERIC LAYERS -->
+  <!-- ============================================== -->
+  <canvas id="superheroCanvas"></canvas>
+  
+  <!-- Spider-Web Decorative Corners (SVG) -->
+  <div class="spider-web web-top-left">
+    <svg viewBox="0 0 120 120" fill="none" stroke="currentColor">
+      <path d="M0,0 L120,0 M0,0 L0,120 M0,0 L120,120 M0,0 L40,120 M0,0 L80,120 M0,0 L120,40 M0,0 L120,80" stroke-width="0.8" opacity="0.4"/>
+      <path d="M20,0 Q20,20 0,20 M45,0 Q45,45 0,45 M75,0 Q75,75 0,75 M110,0 Q110,110 0,110" stroke-width="1" opacity="0.35"/>
+    </svg>
+  </div>
+  <div class="spider-web web-top-right">
+    <svg viewBox="0 0 120 120" fill="none" stroke="currentColor">
+      <path d="M120,0 L0,0 M120,0 L120,120 M120,0 L0,120 M120,0 L80,120 M120,0 L40,120 M120,0 L0,40 M120,0 L0,80" stroke-width="0.8" opacity="0.4"/>
+      <path d="M100,0 Q100,20 120,20 M75,0 Q75,45 120,45 M45,0 Q45,75 120,75 M10,0 Q10,110 120,110" stroke-width="1" opacity="0.35"/>
+    </svg>
+  </div>
+
+  <!-- Gotham City Skyline Silhouette Backdrop -->
+  <div class="gotham-skyline">
+    <div class="skyline-buildings"></div>
+    <div class="fog-layer fog-layer-1"></div>
+    <div class="fog-layer fog-layer-2"></div>
+    <div class="light-ray light-ray-left"></div>
+    <div class="light-ray light-ray-right"></div>
+  </div>
+
+  <!-- Overlays: Halftone comic dots & vintage novel texture -->
+  <div class="halftone-overlay"></div>
+  <div class="cinematic-vignette"></div>
+  <div class="speed-lines" id="speedLines"></div>
+
+  <!-- ============================================== -->
+  <!-- MAIN MULTI-CHAPTER MISSION CONTAINER           -->
+  <!-- ============================================== -->
+  <main class="mission-container" id="missionContainer">
+
+    <!-- ============================================== -->
+    <!-- PAGE 01 — THE HERO                             -->
+    <!-- ============================================== -->
+    <section class="page active" id="page1" data-mission="THE HERO">
+      <div class="hero-screen-center">
+        <div class="bat-signal-glow"></div>
+        
+        <div class="hero-crest-box">
+          <div class="bat-shield-svg">
+            <svg viewBox="0 0 140 90" fill="none">
+              <path d="M70,18 C78,12 85,5 92,2 C90,14 96,16 108,12 C104,26 116,30 134,26 C124,46 102,62 82,78 C76,82 72,86 70,88 C68,86 64,82 58,78 C38,62 16,46 6,26 C24,30 36,26 32,12 C44,16 50,14 48,2 C55,5 62,12 70,18 Z" 
+                    fill="url(#crimsonGrad)" stroke="#ffd152" stroke-width="2" filter="drop-shadow(0 0 12px rgba(225,29,72,0.6))"/>
+              <defs>
+                <linearGradient id="crimsonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ff3b5c" />
+                  <stop offset="50%" stop-color="#b91c1c" />
+                  <stop offset="100%" stop-color="#450a0a" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="crest-spider-radar"></div>
+        </div>
+
+        <!-- Center: "my Superhero..!" -->
+        <h1 class="hero-center-title animate-glow">my Superhero..!</h1>
+        <div class="hero-subglow-line"></div>
+      </div>
+
+      <!-- Bottom-Right, Right-Aligned Prompt: "(ready for mission..?)" -->
+      <div class="hero-bottom-right">
+        <div class="hero-prompt-text">(ready for mission..?)</div>
+        <button class="hero-tap-trigger" id="btnStartHero">
+          <span class="radar-pulse"></span>
+          <span class="trigger-label">Tap to initiate briefing ⚡</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- PAGE 02 — MISSION CHECK                        -->
+    <!-- ============================================== -->
+    <section class="page" id="page2" data-mission="MISSION CHECK">
+      <div class="comic-card-wrapper">
+        <div class="comic-panel-box secret-briefing-card">
+          <div class="panel-classified-tag">
+            <span class="tag-live-dot"></span> TOP SECRET TRANSMISSION
+          </div>
+          
+          <div class="hero-avatar-bubble">
+            <div class="avatar-hero-icon">🦇</div>
+            <div class="avatar-heart-ping">🖤</div>
+          </div>
+
+          <div class="briefing-dialogue">
+            <h2 class="briefing-greeting typewriter-text">heyy baby..! What's up..?</h2>
+            <p class="briefing-question">All set for today's mission..?</p>
+          </div>
+
+          <div class="mission-action-buttons">
+            <button class="comic-action-btn btn-yes" id="btnPage2Yes">
+              <span class="btn-glow-layer"></span>
+              <span class="btn-text">YES 💥</span>
+            </button>
+            <button class="comic-action-btn btn-no" id="btnPage2No">
+              <span class="btn-text">NO 🙈</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- PAGE 03 — MEMORY CHECK                         -->
+    <!-- ============================================== -->
+    <section class="page" id="page3" data-mission="MEMORY CHECK">
+      <div class="comic-card-wrapper">
+        <div class="comic-panel-box memory-question-card" id="memoryQuestionContainer">
+          <div class="panel-classified-tag">
+            <span class="tag-live-dot"></span> ARCHIVE INTEL // QUERY 01
+          </div>
+
+          <div class="memory-question-header">
+            <div class="question-radar-icon">📡</div>
+            <h3 class="memory-prompt-title">where did we start talking..?</h3>
+            <p class="memory-prompt-sub">Choose wisely, superhero...</p>
+          </div>
+
+          <div class="memory-options-grid">
+            <button class="memory-opt-btn" id="btnOptInstagram">
+              <span class="opt-icon">📸</span>
+              <span class="opt-label">Instagram</span>
+            </button>
+            <button class="memory-opt-btn" id="btnOptWhatsapp">
+              <span class="opt-icon">💬</span>
+              <span class="opt-label">WhatsApp</span>
+            </button>
+          </div>
+
+          <div class="memory-feedback-banner" id="memoryQuestionFeedback"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- CHAPTER 01 — THE ORIGIN                        -->
+    <!-- ============================================== -->
+    <section class="page" id="chapter1" data-mission="CHAPTER 01">
+      <div class="chapter-scroll-view">
+        <div class="chapter-header-box">
+          <div class="chapter-counter-pill">STORY ARCHIVE // 01</div>
+          <h2 class="chapter-main-title">CHAPTER 01 — THE ORIGIN</h2>
+          <p class="chapter-subtitle">"Every story has a beginning..."</p>
+          <div class="spider-divider">
+            <span class="spider-line"></span>
+            <span class="spider-icon">🕸️</span>
+            <span class="spider-line"></span>
+          </div>
+        </div>
+
+        <!-- Full Origin Narrative Panels -->
+        <div class="story-panels-container">
+          
+          <!-- Card 1 -->
+          <div class="story-panel-item">
+            <div class="panel-number">01</div>
+            <div class="panel-content">
+              <div class="panel-phase-tag">PHASE 01 // STRANGERS</div>
+              <h4 class="panel-title">The Random Group & The GEM</h4>
+              <p class="panel-text">
+                That NEET prep group is the reason I found a true <strong>GEM</strong> like you. At first.. you were just a stranger to me. I had heard this once - sometimes there are things we can't tell anyone because we're scared that someone we know might judge us. And when we feel like sharing those things, somehow, it feels easier to tell a stranger.
+              </p>
+              <div class="handwritten-sticky-note">
+                <span class="pin-icon">📌</span>
+                <p>"And that's exactly what happened with me. I started sharing my random thoughts with you... 💬"</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="story-panel-item">
+            <div class="panel-number">02</div>
+            <div class="panel-content">
+              <div class="panel-phase-tag">PHASE 02 // FRIENDS</div>
+              <h4 class="panel-title">Sharing My Whole World</h4>
+              <p class="panel-text">
+                Then my life.. aani mg ashya ghosthi jya mi kadhich konala sangitlya nvatya... Ani without even realizing, I started telling you everything. Mazya sobat typing madhe ky zala, mala gharchyanni ky mahntla, mla radayla ka aala, maz maan ka dhukla, mla kontya mula ni ky mahtla... je pn mazya sobat zala sarv <strong>EVERYTHING..!</strong>
+              </p>
+              <div class="handwritten-sticky-note note-yellow">
+                <span class="pin-icon">📌</span>
+                <p>"I never even noticed when that random stranger slowly got promoted to become one of the most special ani irreplaceable person of my life..! 🥹🖤"</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="story-panel-item">
+            <div class="panel-number">03</div>
+            <div class="panel-content">
+              <div class="panel-phase-tag">PHASE 03 // SOMEONE SPECIAL</div>
+              <h4 class="panel-title">The Way You Changed Me</h4>
+              <p class="panel-text">
+                It was all the little things. The way you listened. The way you explained things to me. And the most important.. The way you made me feel heard without making me feel judged. Sometimes I genuinely wondered, <em>"evdha cute shant mature ani emotionally available mula pn exist kartat ka..?"</em> Because you changed my mentality I had carried for so long about boys. And you changed ME.
+              </p>
+              <div class="handwritten-sticky-note note-crimson">
+                <span class="pin-icon">📌</span>
+                <p>"The girl who once hated everything from her core.. somehow found her way back into her soft girl era because of you, <strong>Baby</strong> ❤️. You told me that I am special. I am unique. And somehow, the things I couldn't do for myself.. YOU DID THEM FOR ME!!"</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="story-panel-item">
+            <div class="panel-number">04</div>
+            <div class="panel-content">
+              <div class="panel-phase-tag">PHASE 04 // DESTINY</div>
+              <h4 class="panel-title">My Forever... My Pookie!</h4>
+              <p class="panel-text">
+                It started with a random online group. Then came two strangers. Then conversations. Then friendship. And somewhere between all those random conversations, stupid talks, deep talks and cute little moments... you became <strong>MY FOREVER.. MY POOKIE..!</strong> And the funniest part..? Neither of us probably knew where this beginning was going to take us. But maybe.. some of the most beautiful chapters begin with the most random "hello".
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Mini Mission 01 Trigger Button -->
+        <div style="text-align: center; margin-top: 14px; margin-bottom: 20px;">
+          <button class="unlock-celebration-pill" onclick="openMiniMission01Modal()">
+            START MINI MISSION 01 🎯
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- CHAPTER 02 — THE UNEXPECTED ALLY               -->
+    <!-- ============================================== -->
+    <section class="page" id="chapter2" data-mission="CHAPTER 02">
+      <div class="chapter-scroll-view">
+        <div class="chapter-header-box">
+          <div class="chapter-counter-pill">STORY ARCHIVE // 02</div>
+          <h2 class="chapter-main-title">CHAPTER 02 — THE UNEXPECTED ALLY</h2>
+          <p class="chapter-subtitle">"and you know what's that 261 means..?"</p>
+          <div class="spider-divider">
+            <span class="spider-line"></span>
+            <span class="spider-icon">⏳🖤</span>
+            <span class="spider-line"></span>
+          </div>
+        </div>
+
+        <!-- 261 Days Card & Stats -->
+        <div class="days-261-love-card">
+          <h3 class="days-question-heading">"And somehow... you became my person."</h3>
+          
+          <div class="stats-ticker-grid">
+            <div class="ticker-pill">
+              <span class="ticker-num">261</span>
+              <span class="ticker-lbl">DAYS TOGETHER</span>
+            </div>
+            <div class="ticker-pill">
+              <span class="ticker-num">3,75,840</span>
+              <span class="ticker-lbl">MINUTES</span>
+            </div>
+            <div class="ticker-pill">
+              <span class="ticker-num">2,25,50,400</span>
+              <span class="ticker-lbl">SECONDS</span>
+            </div>
+          </div>
+
+          <div class="cute-sticker-letter">
+            <div class="sticker-pin">💖</div>
+            <p class="sticker-p">
+              "Babyyyyy... it's been <strong>261 days</strong>.. yesss.. aaj aaplyala relationship la 261 days.. 375840 minutes.. 22550400 seconds zale aahet. and we are still together.. I seriously don't know tuzya sarka evdha cutu babyy kadhi mazya life madhe aala ani mazya life la evdha meaningful banvala.. babee hold my hand through the screen okayy..? I need you today, tomorrow and each passing day by my side..!"
+            </p>
+          </div>
+
+          <!-- Button to trigger Excitement Slider Pop-Up -->
+          <div style="text-align: center; margin-top: 24px;">
+            <button class="comic-action-btn btn-yes" onclick="openExcitementModal()" style="max-width: 320px; margin: 0 auto;">
+              <span class="btn-text">CHECK AGENT READINESS ⚡</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- CHAPTER 03 — A HERO'S DIARY                    -->
+    <!-- ============================================== -->
+    <section class="page" id="chapter3" data-mission="CHAPTER 03">
+      <div class="chapter-scroll-view">
+        <div class="chapter-header-box">
+          <div class="chapter-counter-pill">DIARY ARCHIVE // 03</div>
+          <h2 class="chapter-main-title">CHAPTER 03 — A HERO'S DIARY</h2>
+          <p class="chapter-subtitle">"A story of tenderness, rain, two cats, and eight little kittens."</p>
+          <div class="spider-divider">
+            <span class="spider-line"></span>
+            <span class="spider-icon">📖🐾</span>
+            <span class="spider-line"></span>
+          </div>
+        </div>
+
+        <!-- Novel / Diary Pages Container -->
+        <div class="diary-book-wrapper">
+          
+          <!-- Entry 1 -->
+          <div class="diary-page-card">
+            <div class="diary-date-tag">DIARY ENTRY // CHAVAN NIWAS 🏡</div>
+            <h4 class="diary-heading">The Storm & The Gentle Caretaker 🌧️</h4>
+            <p class="diary-text">
+              The thunder was loud, but inside Chavan Niwas, the sweetest boy was watching out for every helpless soul. When the mama cat needed shelter from the dark streets, you didn't hesitate for a single second. You opened your doors and heart to her.
+            </p>
+            <div class="diary-badge-pill">SHELTER OF UNCONDITIONAL LOVE 🐾</div>
+          </div>
+
+          <!-- Entry 2 -->
+          <div class="diary-page-card">
+            <div class="diary-date-tag">DIARY ENTRY // KRACKJACK FEAST 🍪</div>
+            <h4 class="diary-heading">Golden Biscuits & Soft Purrs</h4>
+            <p class="diary-text">
+              Sitting quietly on the floor, breaking crispy golden Krackjack biscuits with gentle hands so she wouldn't be hungry. Wrapping her in warmth, stroking her fur, making sure her shivering stopped. Seeing you care so deeply for tiny creatures makes my heart melt every single time.
+            </p>
+            <div class="diary-badge-pill badge-gold">TENDER CARE & AFFECTION 💖</div>
+          </div>
+
+          <!-- Entry 3 (2 Years Later & 8 Babies) -->
+          <div class="diary-page-card">
+            <div class="diary-date-tag">DIARY ENTRY // 2 YEARS LATER & 8 BABIES! 🐾✨</div>
+            <h4 class="diary-heading">And After 2 Years... 8 Little Babies Arrived! 😻</h4>
+            <p class="diary-text">
+              Time passed, and the bond only grew deeper. And then came the most magical miracle—after 2 years, her 8 tiny, adorable babies arrived! Watching you shower each little kitten with pure love, protection, and patience showed me the true depth of your heart. You are a true hero, <strong>Himanshu</strong>.
+            </p>
+            <div class="diary-badge-pill">8 BABIES ARRIVED SAFELY 🍼🐾</div>
+          </div>
+
+          <!-- Secret Transmission Pop-Up Trigger -->
+          <div style="text-align: center; margin-top: 18px;">
+            <button class="unlock-celebration-pill" onclick="openSecretMessageModal()">
+              REVEAL SECRET TRANSMISSION 🤫
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- CHAPTER 04 — CLASSIFIED FILE                   -->
+    <!-- ============================================== -->
+    <section class="page" id="chapter4" data-mission="CHAPTER 04">
+      <div class="chapter-scroll-view">
+        <div class="chapter-header-box">
+          <div class="chapter-counter-pill">DOSSIER // 04</div>
+          <h2 class="chapter-main-title">CLASSIFIED FILE: HIMANSHU</h2>
+          <div class="classified-stamp-banner">TOP SECRET // CONFIDENTIAL</div>
+          <div class="spider-divider">
+            <span class="spider-line"></span>
+            <span class="spider-icon">🗂️</span>
+            <span class="spider-line"></span>
+          </div>
+        </div>
+
+        <!-- Secret Agent Dossier Folder -->
+        <div class="dossier-folder">
+          <div class="dossier-tab">SUBJECT: HIMANSHU (CODE: POOKIE)</div>
+          
+          <!-- Clue Radar Instruction -->
+          <div class="dossier-radar-bar">
+            <span class="radar-ping"></span>
+            <span>FIND & TAP ALL 4 HIDDEN SYMBOLS IN THIS DOSSIER:</span>
+            <span class="clue-counter" id="dossierClueCounter">0 / 4 FOUND</span>
+          </div>
+
+          <div class="dossier-body">
+            <!-- Profile Header -->
+            <div class="dossier-hero-profile">
+              <div class="profile-photo-box">
+                <div class="photo-placeholder-agent">
+                  <span class="agent-avatar-icon">🦸‍♂️</span>
+                  <span class="agent-label">HERO-01</span>
+                </div>
+                <!-- Hidden Clue 1 -->
+                <button class="hidden-symbol-btn" id="clueBtn1" onclick="findSecretClue(1, this)" title="Inspect clue">
+                  🕷️
+                </button>
+              </div>
+
+              <div class="profile-meta">
+                <p><strong>CODENAME:</strong> POOKIE // THE PROTECTOR</p>
+                <p><strong>REAL NAME:</strong> HIMANSHU</p>
+                <p><strong>ALIASES:</strong> Babe / Baby / Cutieeee / Sunshine / Ansh</p>
+                <p><strong>STATUS:</strong> Long-distance ally (Haven't met offline yet)</p>
+                <p><strong>CLEARANCE:</strong> LEVEL 10 // HEART'S ACCESS</p>
+              </div>
+            </div>
+
+            <!-- Superhero Stats & Powers Grid -->
+            <div class="dossier-section-title">
+              <span>REGISTERED SUPERPOWERS</span>
+              <!-- Hidden Clue 2 -->
+              <button class="hidden-symbol-btn" id="clueBtn2" onclick="findSecretClue(2, this)" title="Inspect clue">
+                ⚡
+              </button>
+            </div>
+
+            <div class="powers-grid-dossier">
+              <div class="dossier-power-pill">
+                <span class="pow-icon">✨</span>
+                <div class="pow-details">
+                  <h5>Virtual Comfort Shield</h5>
+                  <p>Can comfort me across any distance and make my day 1000x brighter through a single text or call.</p>
+                </div>
+                <div class="pow-score">MAX</div>
+              </div>
+
+              <div class="dossier-power-pill">
+                <span class="pow-icon">🛡️</span>
+                <div class="pow-details">
+                  <h5>Unseen Smile Aura</h5>
+                  <p>Though I haven't seen his smile in person yet, the warmth of his words creates pure sunshine in my heart.</p>
+                </div>
+                <div class="pow-score">10,000+</div>
+              </div>
+
+              <div class="dossier-power-pill">
+                <span class="pow-icon">🧠</span>
+                <div class="pow-details">
+                  <h5>Sharpest Wit & Teasing</h5>
+                  <p>Master of goofy comebacks, adorable jokes, and making me laugh until my cheeks hurt.</p>
+                </div>
+                <div class="pow-score">GOD TIER</div>
+              </div>
+
+              <div class="dossier-power-pill">
+                <span class="pow-icon">💖</span>
+                <div class="pow-details">
+                  <h5>Heart of Pure 24K Gold</h5>
+                  <p>Gentle, emotionally available, caring, and truly one in 8 billion.</p>
+                </div>
+                <div class="pow-score">INFINITY</div>
+              </div>
+            </div>
+
+            <!-- Classified Notes & Hidden Clues 3 & 4 -->
+            <div class="dossier-classified-notes">
+              <div class="dossier-section-title">
+                <span>CONFIDENTIAL OBSERVATIONS</span>
+                <!-- Hidden Clue 3 -->
+                <button class="hidden-symbol-btn" id="clueBtn3" onclick="findSecretClue(3, this)" title="Inspect clue">
+                  🖤
+                </button>
+              </div>
+              <ul class="dossier-notes-list">
+                <li>⚠️ <strong>Status:</strong> Long-distance allies — haven't met offline yet, but our bond is closer than anyone else.</li>
+                <li>⚡ <strong>Special Weapon:</strong> That adorable voice note and caring words that melt all my defenses.</li>
+                <li>📜 <strong>Mission Record:</strong> 261 days (3,75,840 minutes) of continuous virtual protection and love.</li>
+              </ul>
+              
+              <!-- Hidden Clue 4 inside stamp area -->
+              <div class="dossier-stamp-seal">
+                <div class="seal-inner">TOP SECRET</div>
+                <button class="hidden-symbol-btn clue-in-stamp" id="clueBtn4" onclick="findSecretClue(4, this)" title="Inspect clue">
+                  🔑
+                </button>
+              </div>
+            </div>
+
+            <!-- Access Granted Reveal Box -->
+            <div class="dossier-access-granted" id="dossierAccessGranted" style="display: none;">
+              <div class="access-badge-glow">ACCESS GRANTED</div>
+              <h4 class="access-lead-text">"You found everything, Pookie..."</h4>
+              <p class="access-sub-text">
+                Every secret in this file belongs to you, <strong>Babe</strong>.
+              </p>
+              <button class="comic-action-btn btn-proceed" onclick="openHugCardModal()" style="margin: 0 auto;">
+                <span class="btn-text">OPEN CLASSIFIED HUG CARD 🫂💖</span>
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- CHAPTER 05 — THE FINAL MISSION                 -->
+    <!-- ============================================== -->
+    <section class="page" id="chapter5" data-mission="THE FINAL MISSION">
+      <div class="chapter-scroll-view">
+        <div class="chapter-header-box">
+          <div class="chapter-counter-pill">FINAL TRIAL // 05</div>
+          <h2 class="chapter-main-title">THE FINAL MISSION</h2>
+          <p class="chapter-subtitle">"The ultimate superhero trial before the classified reward is revealed."</p>
+          <div class="spider-divider">
+            <span class="spider-line"></span>
+            <span class="spider-icon">🎯⚡</span>
+            <span class="spider-line"></span>
+          </div>
+        </div>
+
+        <div class="final-mission-arena">
+          <div class="mission-status-hud">
+            <div class="radar-scan-circle">
+              <div class="radar-sweep"></div>
+              <span class="radar-target-dot"></span>
+            </div>
+            <div class="hud-info">
+              <span class="hud-phase-label" id="finalTrialStageLabel">STAGE 1 / 3: POWER CALIBRATION</span>
+              <div class="hud-progress-track">
+                <div class="hud-progress-fill" id="finalTrialProgressFill" style="width: 33%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Trial Card -->
+          <div class="trial-card-box" id="trialCardBox">
+            <h3 class="trial-title" id="trialTitle">TRIAL 01: POWER GRID CALIBRATION ⚡</h3>
+            <p class="trial-desc" id="trialDesc">
+              The city's power grid is down! Agent Himanshu must route emergency backup power to the love reactor. Choose the frequency:
+            </p>
+
+            <div class="trial-options-grid" id="trialOptionsGrid">
+              <!-- Rendered via script -->
+            </div>
+
+            <div class="trial-feedback" id="trialFeedback"></div>
+          </div>
+
+          <!-- Mission Complete Screen Inside Arena -->
+          <div class="mission-success-summary" id="missionSuccessSummary" style="display: none;">
+            <div class="complete-badge-animated">MISSION STATUS: COMPLETE ✅</div>
+            <p class="reward-lead-p">Every trial mastered. You are our forever superhero...</p>
+            
+            <button class="comic-action-btn btn-yes" onclick="openMissionCompletePopup()" style="margin: 20px auto 0; max-width: 320px;">
+              <span class="btn-text">PROCEED TO FINALE 🚀</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- FINAL SECRET CHAPTER: CAKE, LETTER, MEDIA & END-->
+    <!-- ============================================== -->
+    <section class="page" id="finalChapter" data-mission="THE FINALE">
+      <div class="chapter-scroll-view letter-scroll-view">
+        
+        <!-- SECTION 0: BIG BIRTHDAY CAKE & WISH CEREMONY -->
+        <div class="birthday-cake-card" style="margin-top: 10px;">
+          <div class="cake-card-badge">BIRTHDAY WISH CEREMONY 🎂</div>
+          <h2 class="cake-grand-title">Happiest Birthday Baby 💖✨</h2>
+          <p class="cake-ceremony-sub">Make a wish, Himanshu, and tap the cake to blow the candles & blast the firecracker sky!</p>
+
+          <div class="interactive-cake-stage" id="cakeStage" onclick="blowBirthdayCandles()">
+            <div class="cake-candles-row">
+              <div class="candle"><div class="candle-flame" id="flame1"></div><div class="candle-stick"></div></div>
+              <div class="candle middle-candle"><div class="candle-flame" id="flame2"></div><div class="candle-stick"></div></div>
+              <div class="candle"><div class="candle-flame" id="flame3"></div><div class="candle-stick"></div></div>
+            </div>
+            <div class="cake-layer cake-layer-top">
+              <span class="cake-frosting-heart">💖</span>
+            </div>
+            <div class="cake-layer cake-layer-bottom">
+              <span class="cake-gold-text">HAPPIEST BIRTHDAY BABY</span>
+            </div>
+            <div class="cake-stand"></div>
+          </div>
+
+          <div class="wish-status-banner" id="wishStatusBanner">
+            👉 Tap cake to blow candles & make a wish! 🕯️✨
+          </div>
+        </div>
+
+        <!-- 1. BIRTHDAY LETTER -->
+        <div class="novel-parchment-card" style="margin-top: 24px;">
+          <div class="parchment-border-frame">
+            <div class="letter-top-emblem">💌</div>
+            
+            <div class="letter-header">
+              <h2 class="letter-title">THE LAST CHAPTER</h2>
+              <p class="letter-subtitle">last chapter of this mission...but it's the actual beginning</p>
+              <div class="letter-divider">✦ ✦ ✦</div>
+            </div>
+
+            <!-- Deeply Personal Birthday Letter -->
+            <div class="letter-body-text">
+              <p class="letter-salutation">Pookie...</p>
+              
+              <p class="letter-p">
+                From the moment we started talking, you didn't just become a part of my routine—you quietly became the best part of my entire day. In a world that is often loud and overwhelming, you became my calm, my safe shelter, and my biggest source of joy.
+              </p>
+              
+              <p class="letter-p">
+                <strong class="name-serious">Himanshu</strong>, I want you to know how deeply proud I am of the person you are. Your gentle heart, your resilience, your kindness, and the genuine way you care for the people around you is nothing short of heroic. Even though we haven't met offline yet and I haven't seen your real smile in person, your soul has touched mine more deeply than anyone ever has.
+              </p>
+              
+              <p class="letter-p">
+                <strong class="name-warm">Sunshine</strong>, thank you for the 261 days of endless laughs, for listening to my silly rants, for comforting me without hesitation, and for filling my life with warmth and light even on the gloomiest days.
+              </p>
+              
+              <p class="letter-p">
+                <strong class="name-soft">Baby</strong>, you are truly one of a kind. Every memory we've built is a treasure I hold close to my heart, and every dream for the future is so much brighter because you are in it.
+              </p>
+              
+              <p class="letter-p">
+                <strong class="name-romantic">Babe</strong>, hold my hand through every chapter of our lives. You made me believe in soft love, in true companionship, and in someone who makes me feel deeply heard.
+              </p>
+
+              <p class="letter-p">
+                <strong class="name-special">Ansh</strong>, today is all about celebrating YOU—the boy who stole my heart, my favorite adventure, and my forever superhero.
+              </p>
+              
+              <p class="letter-p">
+                May this year bring you endless happiness, boundless success, good health, and all the dreams your heart desires.
+              </p>
+              
+              <div class="letter-signature-block" style="margin-top: 14px;">
+                <span>Forever Your #1 Cheerleader & Sidekick</span>
+                <span class="sig-heart">💖✨</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. 🎧 VOICE NOTE PLAYER -->
+        <div class="media-surprise-card voice-card" style="margin-top: 24px;">
+          <div class="media-card-badge">TRANSMISSION 01 🎧</div>
+          <h3 class="media-card-title">Voice Note</h3>
+          <p class="media-card-sub">A little something recorded specially for you, Baby.</p>
+          
+          <!-- Hidden Native Audio for Real Local File -->
+          <audio id="realVoiceAudio" preload="metadata">
+            <source src="media/voice-note.mp3" type="audio/mpeg">
+            <source src="media/voice-note.m4a" type="audio/mp4">
+            <source src="media/Voice 019.m4a" type="audio/mp4">
+          </audio>
+
+          <div class="voice-player-custom">
+            <button class="voice-play-btn" id="voicePlayBtn" onclick="toggleVoiceNote()">
+              <span id="voicePlayIcon">▶️</span>
+            </button>
+            <div class="voice-waveform" id="voiceWaveform">
+              <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+              <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+              <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+              <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </div>
+            <span class="voice-timer" id="voiceTimer">0:00</span>
+          </div>
+        </div>
+
+        <!-- 3. 🎁 SURPRISE VIDEO GIFT BOX (POP-UP TRIGGER) -->
+        <div class="media-surprise-card video-card" style="margin-top: 24px; text-align: center;">
+          <div class="media-card-badge">SPECIAL TRANSMISSION 02 🎁🎬</div>
+          <div class="gift-box-icon-large" onclick="openBirthdayVideoModal()" style="cursor: pointer; font-size: 3.8rem; margin: 12px 0; display: inline-block; filter: drop-shadow(0 0 15px rgba(255, 209, 82, 0.6));">
+            🎁✨
+          </div>
+          <h3 class="media-card-title" style="color: #ffd152; font-size: 1.4rem;">Surprise Video Gift</h3>
+          <p class="media-card-sub" style="color: #cbd5e1; margin-bottom: 16px;">
+            A special memory reel prepared with all my love for my favorite boy... Tap below to unwrap!
+          </p>
+          <button class="comic-action-btn btn-yes" onclick="openBirthdayVideoModal()" style="margin: 0 auto; max-width: 320px;">
+            <span class="btn-text">UNWRAP SURPRISE VIDEO 🎁🎬</span>
+          </button>
+        </div>
+
+        <!-- 4. “Happy Birthday, Pookie. 🥹🖤” (AT THE VERY END) -->
+        <div class="final-emotional-signoff-card" style="margin-top: 28px;">
+          <h2 class="final-pookie-signoff animate-glow">
+            Happy Birthday, Pookie. 🥹🖤
+          </h2>
+        </div>
+
+        <!-- Finale Action Buttons -->
+        <div class="grand-finale-cta" style="margin-top: 20px;">
+          <button class="comic-action-btn btn-grand-blast" onclick="triggerGrandCelebration()" style="margin: 0 auto;">
+            <span class="btn-text">BLAST FIRE CRACKER SKY! 🎆💥</span>
+          </button>
+          <button class="comic-action-btn btn-replay-all" onclick="restartToBeginning()" style="margin: 0 auto;">
+            <span class="btn-text">REPLAY MISSION FROM START 🔄</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================== -->
+  <!-- MODAL: CUTE BLUSHY COMPLIMENT (Page 2 Yes)     -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="blushyComplimentModal">
+    <div class="comic-speech-cloud-popup cinematic-modal-theme">
+      <div class="modal-badge-top">HERO REPORT 🙈💗</div>
+      <h3 class="cat-headline" style="color: #ff3366;">Awwww my hero! 🙈</h3>
+      <p class="cat-body-text" style="color: #cbd5e1;">
+        Look at you all set for the mission! You look extra handsome and brave today, Superhero! Let's unlock your secret briefing...
+      </p>
+      <button class="comic-action-btn btn-yes" id="btnContinueToMissionUnlock" style="margin: 16px auto 0;">
+        <span class="btn-text">ENTER MISSION ⚡</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: MEMORY CHECK INTRO POP-UP (Page 3 Intro) -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="memoryIntroModal">
+    <div class="comic-speech-cloud-popup cinematic-modal-theme">
+      <div class="modal-detective-badge">🕵️‍♂️🖤</div>
+      <div class="cloud-message-content">
+        <h3 class="cat-headline" style="color: #ffd152;">how well do you remember our beginning?</h3>
+        <p class="cat-body-text" style="color: #cbd5e1;">Ready birthday boy?</p>
+      </div>
+
+      <div class="modal-btn-duo" style="justify-content: center;">
+        <button class="comic-action-btn btn-yes" id="btnMemoryIntroYes">
+          <span class="btn-text">YES 💖</span>
+        </button>
+        <button class="comic-action-btn btn-no" id="btnMemoryIntroNo">
+          <span class="btn-text">NO 🙈</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: CUTE MEMORY COMPLIMENT (Page 3 Yes)     -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="cuteMemoryComplimentModal">
+    <div class="comic-speech-cloud-popup cinematic-modal-theme">
+      <div class="modal-badge-top">SMART HERO 🥰✨</div>
+      <h3 class="cat-headline" style="color: #38bdf8;">That's my boy! 🥰</h3>
+      <p class="cat-body-text" style="color: #cbd5e1;">
+        Aww good boy! Let's see how sharp that superhero memory is, Pookie!
+      </p>
+      <button class="comic-action-btn btn-yes" id="btnStartMemoryQuestion" style="margin: 16px auto 0;">
+        <span class="btn-text">LET'S GO 💬</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: CLOUD POP-UP ("go back" cutely angry)   -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="goBackModal">
+    <div class="comic-speech-cloud-popup cloud-small cinematic-modal-theme">
+      <div class="cloud-symbol">☁️😾</div>
+      <div class="cloud-message-content">
+        <h3 class="cat-headline" style="color: #ff3366;">go back 😾</h3>
+        <p class="cat-body-text" style="color: #cbd5e1;">
+          go back...don't make me angry on my special day..! 😾 You HAVE to be ready, Superhero! 😉
+        </p>
+      </div>
+      <button class="comic-action-btn btn-modal-retry" id="btnCloseGoBack" style="margin: 0 auto;">
+        <span class="btn-text">Ready now, Babe! ⚡</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: CUTE ANGRY CAT (When clicking NO on Page 2) -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="catCruelModal">
+    <div class="comic-speech-cloud-popup cinematic-modal-theme">
+      <div class="cat-reaction-stage">
+        <span class="cat-emoji-giant">😾</span>
+      </div>
+
+      <div class="cloud-message-content">
+        <h3 class="cat-headline" style="color: #ff3366;">Omggg..!</h3>
+        <p class="cat-body-text" style="color: #cbd5e1;">Such a cruel insaan you are !! 😾</p>
+      </div>
+
+      <button class="comic-action-btn btn-modal-retry" id="btnCloseCatCruel" style="margin: 0 auto;">
+        <span class="btn-text">okay okay, I'm ready! 🥺👉👈</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: ANGRY CAT POP-UP ("excuse me??? 😾")     -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="catExcuseMeModal">
+    <div class="comic-speech-cloud-popup cinematic-modal-theme">
+      <div class="cat-reaction-stage angry-shake">
+        <span class="angry-symbol">💢</span>
+        <span class="cat-emoji-giant">😾</span>
+      </div>
+
+      <div class="cloud-message-content">
+        <h3 class="cat-headline" style="color: #ff3366;">excuse me??? 😾</h3>
+        <p class="cat-body-text" style="color: #cbd5e1;">
+          Instagram?! How could you forget where we really started talking?! Try again mister!
+        </p>
+      </div>
+
+      <button class="comic-action-btn btn-modal-retry" id="btnCloseExcuseMe" style="margin: 0 auto;">
+        <span class="btn-text">My bad, let me fix it! 🥺</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: MINI MISSION 01 (CINEMATIC GAMER POPUP) -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="miniMission01Modal">
+    <div class="comic-speech-cloud-popup cinematic-modal-theme mini-mission-modal-box">
+      <div class="panel-classified-tag" style="position: static; display: inline-block; margin-bottom: 10px;">
+        MINI MISSION 01 // ORIGIN CHECK
+      </div>
+      <h3 class="cat-headline" style="font-size: 1.5rem; color: #ffd152;">How well do you remember the beginning?</h3>
+      <div class="mission-progress-indicator" id="mm1ProgressModal" style="margin-bottom: 14px; color: #38bdf8; font-weight: 700;">01 / 03</div>
+
+      <div class="mm-quiz-deck" id="mm1QuizDeck">
+        <!-- Rendered via JS -->
+      </div>
+
+      <div class="mm-feedback-zone" id="mm1Feedback"></div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: MINI MISSION 01 TEASE POPUP             -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="customTeaseModal">
+    <div class="comic-speech-cloud-popup cinematic-modal-theme">
+      <div class="cloud-symbol" id="customTeaseIcon">☁️😾</div>
+      <div class="cloud-message-content">
+        <h3 class="cat-headline" id="customTeaseTitle" style="color: #ff3366;">Hawwww..badam kha tu bala</h3>
+        <p class="cat-body-text" id="customTeaseBody" style="color: #cbd5e1;">Try again Pookie!</p>
+      </div>
+      <button class="comic-action-btn btn-modal-retry" id="btnCloseCustomTease" style="margin: 0 auto;">
+        <span class="btn-text">Let me try again! 🥺</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: Q3 KITTEN AGENT HELPER (FILL PINK HEART) -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="kittenHelperModal">
+    <div class="comic-speech-cloud-popup cinematic-modal-theme kitten-helper-card">
+      <div class="cat-helper-avatar">
+        <span class="kitten-emoji">🐱✨</span>
+      </div>
+      <div class="cloud-message-content">
+        <h3 class="cat-headline" style="color: #ec4899;">I can help you..! 🐾</h3>
+        <p class="cat-body-text" style="color: #cbd5e1;">
+          Agent Pookie, there's a condition: you have to fill my heart with pink colour to reveal the truth!
+        </p>
+      </div>
+
+      <div class="heart-fill-interactive" id="heartFillContainer" onclick="fillKittenHeart()">
+        <div class="heart-fill-bg">
+          <div class="heart-fill-meter" id="heartFillMeter"></div>
+          <span class="heart-icon-overlay">💖</span>
+        </div>
+        <p class="heart-tap-hint" id="heartTapHint">👉 Tap the heart to fill it with pink colour!</p>
+      </div>
+
+      <div class="kitten-reveal-result" id="kittenRevealResult" style="display: none;">
+        <h4 class="reveal-bold-text" style="color: #ffd152;">"konich propose nahi kela aahe aata prynt 🤦‍♀️"</h4>
+        <p class="reveal-sub-text" style="color: #94a3b8;">let's calculate your score...</p>
+        <button class="comic-action-btn btn-yes" onclick="showScoreProgressionSequence()" style="margin: 14px auto 0;">
+          <span class="btn-text">VIEW SCORE 🌟</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: PUZZLE 02 POP-UP VAULT                  -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="puzzle02Modal">
+    <div class="comic-speech-cloud-popup cinematic-modal-theme puzzle-modal-popup">
+      <div class="puzzle-classified-badge">
+        <span class="lock-icon">🔒</span> PUZZLE 02 // CIPHER VAULT
+      </div>
+      <h3 class="puzzle-title" style="color: #ffd152;">DECODE THE MESSAGE</h3>
+      <p class="puzzle-instruction" style="color: #94a3b8;">
+        Agent Himanshu: Tap the cipher keys to decode the passcode before Chapter 02 can open:
+      </p>
+      
+      <div class="puzzle-clue-hint-box" style="background: #1e293b; border-color: #38bdf8; color: #cbd5e1;">
+        <span class="hint-tag" style="color: #38bdf8;">INTEL CLUE:</span> Your #1 nickname + our magical 261 days!
+      </div>
+
+      <!-- Code Display Slots -->
+      <div class="cipher-input-screen">
+        <span class="cipher-slot" id="slot0">_</span>
+        <span class="cipher-slot" id="slot1">_</span>
+        <span class="cipher-slot" id="slot2">_</span>
+        <span class="cipher-slot" id="slot3">_</span>
+        <span class="cipher-slot" id="slot4">_</span>
+        <span class="cipher-slot" id="slot5">_</span>
+        <span class="cipher-slot" id="slot6">_</span>
+        <span class="cipher-slot" id="slot7">_</span>
+        <span class="cipher-slot" id="slot8">_</span>
+      </div>
+
+      <!-- Keypad -->
+      <div class="cipher-keypad">
+        <button class="key-btn" onclick="pressCipherKey('P')">P</button>
+        <button class="key-btn" onclick="pressCipherKey('O')">O</button>
+        <button class="key-btn" onclick="pressCipherKey('K')">K</button>
+        <button class="key-btn" onclick="pressCipherKey('I')">I</button>
+        <button class="key-btn" onclick="pressCipherKey('E')">E</button>
+        <button class="key-btn" onclick="pressCipherKey('2')">2</button>
+        <button class="key-btn" onclick="pressCipherKey('6')">6</button>
+        <button class="key-btn" onclick="pressCipherKey('1')">1</button>
+        <button class="key-btn key-action" onclick="clearCipher()">CLEAR</button>
+        <button class="key-btn key-action key-submit" onclick="submitCipher()">DECODE ⚡</button>
+      </div>
+
+      <div class="puzzle-feedback" id="puzzleFeedback"></div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: EXCITEMENT PERCENTAGE SLIDER POP-UP     -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="excitementModal">
+    <div class="comic-speech-cloud-popup cinematic-modal-theme">
+      <div class="modal-badge-top">SECURITY CLEARANCE CHECK ⚡</div>
+      <h3 class="cat-headline" style="color: #ffd152;">Are You Ready For Next Level?</h3>
+      <p class="cat-body-text" style="color: #cbd5e1; margin-bottom: 14px;">
+        Slide your excitement level to 100% to unlock Activity 03!
+      </p>
+
+      <div class="slider-container">
+        <input type="range" min="0" max="100" value="20" class="excitement-range-input" id="excitementSliderModal" oninput="handleExcitementSlide(this.value)" />
+        <div class="slider-percentage-display" id="sliderPctDisplayModal">20% HYPE</div>
+      </div>
+
+      <div class="slider-feedback-zone" id="sliderFeedbackModal" style="margin-top: 10px;"></div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: ACTIVITY 03 CAT RESCUE TREASURE HUNT    -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="treasureHuntModal">
+    <div class="comic-speech-cloud-popup cinematic-modal-theme" style="max-width: 480px;">
+      <div class="treasure-badge">ACTIVITY 03 // CAT RESCUE MISSION 🐾</div>
+      <h3 class="treasure-title">Rescue Shona, Gobchi & Boku in Rain!</h3>
+      <p class="treasure-sub" style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 16px;">
+        Tap each shivering kitten to give them care:
+      </p>
+
+      <div class="treasure-kittens-grid">
+        <!-- Cat 1: Shona (Cuddle) -->
+        <div class="hunt-kitten-card" id="huntKitten1" onclick="rescueTreasureKitten(1)">
+          <span class="hunt-cat-emoji">🐱🌧️</span>
+          <span class="hunt-cat-name">Shona</span>
+          <span class="hunt-cat-status" id="hkStatus1">Shivering in rain</span>
+          <button class="hunt-action-btn" id="hkBtn1">Give Cuddle 🥺</button>
+        </div>
+
+        <!-- Cat 2: Gobchi (Biscuit) -->
+        <div class="hunt-kitten-card" id="huntKitten2" onclick="rescueTreasureKitten(2)">
+          <span class="hunt-cat-emoji">🐾🌧️</span>
+          <span class="hunt-cat-name">Gobchi</span>
+          <span class="hunt-cat-status" id="hkStatus2">Hungry behind gate</span>
+          <button class="hunt-action-btn" id="hkBtn2">Feed Krackjack Biscuit 🍪</button>
+        </div>
+
+        <!-- Cat 3: Boku (Hug) -->
+        <div class="hunt-kitten-card" id="huntKitten3" onclick="rescueTreasureKitten(3)">
+          <span class="hunt-cat-emoji">😿🌧️</span>
+          <span class="hunt-cat-name">Boku</span>
+          <span class="hunt-cat-status" id="hkStatus3">Looking for warmth</span>
+          <button class="hunt-action-btn" id="hkBtn3">Give Hug 🫂</button>
+        </div>
+      </div>
+
+      <div class="rescue-progress-bar">
+        <span>RESCUE PROGRESS:</span>
+        <strong id="huntScoreText" style="color: var(--gold-accent);">0 / 3 KITTENS SAFE</strong>
+      </div>
+
+      <div class="treasure-win-box" id="treasureWinBox" style="display: none; margin-top: 16px;">
+        <h4 style="color: #4ade80; font-family: var(--font-comic); font-size: 1.3rem;">
+          ALL 3 KITTENS SAFE AT CHAVAN NIWAS! 🏠💖
+        </h4>
+        <button class="comic-action-btn btn-yes" onclick="unlockChapter03FromRescue()" style="margin: 14px auto 0;">
+          <span class="btn-text">ENTER CHAPTER 03: A HERO'S DIARY 📖</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: SECRET MESSAGE TRANSMISSION (Ch 03)     -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="secretMessageModal">
+    <div class="comic-speech-cloud-popup cinematic-modal-theme">
+      <div class="secret-pin-badge">🤫 MY LITTLE SECRET REVEAL</div>
+      <h3 class="cat-headline" style="color: #ffd152; font-size: 1.6rem; margin-bottom: 6px;">To My Kindest Boy</h3>
+      <p class="cat-body-text" style="color: #fce7f3; line-height: 1.7; font-size: 1.05rem;">
+        "Even though we haven't met offline yet and I haven't seen your real smile in person, I know in my heart that you are the sweetest and kindest soul I have ever seen in my entire life, <strong>Himanshu</strong>. 🖤"
+      </p>
+      <button class="comic-action-btn btn-yes" onclick="openLovableAttackModalFromSecret()" style="margin: 16px auto 0;">
+        <span class="btn-text">CONTINUE MISSION ⚡</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: LOVABLE ATTACK POPUP (Before Rapid Fire)-->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="lovableAttackModal">
+    <div class="comic-speech-cloud-popup cinematic-modal-theme">
+      <div class="modal-badge-top">SPECIAL TRANSMISSION 💖</div>
+      <h3 class="cat-headline" style="color: #ec4899;">babyyy..</h3>
+      <p class="cat-body-text" style="color: #cbd5e1; font-size: 1.15rem;">
+        ready for my next lovable attack... 😈💖
+      </p>
+      <button class="comic-action-btn btn-yes" onclick="startRapidFireFromAttack()" style="margin: 16px auto 0;">
+        <span class="btn-text">BRING IT ON! ⚡</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: RAPID FIRE POP-UP (jaldi jaldi bataiye) -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="rapidFireModal">
+    <div class="comic-speech-cloud-popup cinematic-modal-theme rapid-modal-popup">
+      <div class="comic-pow-burst" style="margin-bottom: 6px;">RAPID FIRE ⚡</div>
+      <h3 class="quickfire-title" style="color: #ffd152; margin-bottom: 2px;">No thinking. Pick one.</h3>
+      <p class="quickfire-sub" style="color: #38bdf8; margin-bottom: 14px; font-weight: 700;">jaldi jaldi bataiye, Pookie!</p>
+
+      <div class="quickfire-stage" id="quickFireStage">
+        <!-- Populated via script -->
+      </div>
+
+      <!-- Scorecard & Gift Box Reveal Container -->
+      <div class="quickfire-recap-box" id="quickFireRecap" style="display: none;">
+        <!-- Recap -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: CUTE GIFT BOX POP-UP (After Rapid Fire) -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="giftBoxModal">
+    <div class="comic-speech-cloud-popup cinematic-modal-theme gift-modal-card">
+      <div class="gift-box-art">🎁✨</div>
+      <div class="gift-heart-glow">
+        <span class="glowing-heart-icon">💖</span>
+        <p class="gift-line-1">"Gift kya du..soch soch ke thak gayi"</p>
+        <p class="gift-line-2">"fhir yaad aaya..aapko toh mai allready pasand aa gayi..!!" 🙈💗</p>
+      </div>
+      <div class="gift-congrats-note">congratulations.. you have successfully unlocked chapter 04 🎉</div>
+      <button class="comic-action-btn btn-yes" onclick="unlockChapter04FromGift()" style="margin: 16px auto 0;">
+        <span class="btn-text">ENTER CHAPTER 04: CLASSIFIED FILE 🗂️</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: VIRTUAL HUG CARD (Before Chapter 05)    -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="hugCardModal">
+    <div class="comic-speech-cloud-popup cinematic-modal-theme hug-modal-card">
+      <div class="hug-avatar-icon">🫂💖</div>
+      <div class="panel-classified-tag" style="position: static; display: inline-block; margin-bottom: 10px;">
+        CLASSIFIED CLEARANCE // FOR: ANSH
+      </div>
+      <h3 class="cat-headline" style="color: #ffd152;">Warmest Hug For You</h3>
+      <p class="cat-body-text" style="color: #cbd5e1; line-height: 1.6;">
+        "Sending you the warmest, tightest virtual hug, <strong>Ansh</strong>... You mean the entire world to me. Now step forward into your final trial!"
+      </p>
+      <button class="comic-action-btn btn-yes" onclick="unlockChapter05FromHug()" style="margin: 16px auto 0;">
+        <span class="btn-text">ENTER THE FINAL MISSION 🚀</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: MISSION STATUS COMPLETE POPUP           -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="missionCompleteModal">
+    <div class="comic-speech-cloud-popup cinematic-modal-theme">
+      <div class="complete-badge-animated" style="font-size: 2.2rem; color: #4ade80;">
+        MISSION STATUS:<br/>COMPLETE ✅
+      </div>
+      <p class="cat-body-text" style="color: #cbd5e1; margin-top: 12px;">
+        All parameters fulfilled, Superhero Himanshu...
+      </p>
+      <button class="comic-action-btn btn-yes" onclick="triggerFakeEnding()" style="margin: 16px auto 0;">
+        <span class="btn-text">CLAIM YOUR REWARD 🎁</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: DISTANCE ROSE GREETING CARD (Fake Ending)-->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="roseGreetingModal">
+    <div class="comic-speech-cloud-popup cinematic-modal-theme rose-greeting-card">
+      <div class="rose-emblem">🌹✨</div>
+      <div class="cloud-message-content">
+        <h3 class="cat-headline" style="color: #f43f5e; font-size: 1.5rem; margin-bottom: 8px;">No matter how far apart we are...</h3>
+        <p class="rose-body-p">
+          "Distance may keep us miles away, but somehow our hearts have never felt far from each other. Not kidding but sometimes it feels like you're right here beside me..! And no matter how many miles comes between us, you'll always have a place in my heart that no one else could ever take. ❤️"
+        </p>
+      </div>
+      <button class="comic-action-btn btn-yes" onclick="proceedToFinalSecretChapter()" style="margin: 16px auto 0;">
+        <span class="btn-text">READ THE LAST CHAPTER 💌</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: SURPRISE VIDEO POP-UP GIFT              -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="birthdayVideoModal">
+    <div class="comic-speech-cloud-popup cinematic-modal-theme video-modal-popup" style="max-width: 580px; width: 92%;">
+      <div class="modal-badge-top">SURPRISE GIFT UNWRAPPED 🎁✨</div>
+      <h3 class="cat-headline" style="color: #ffd152; font-size: 1.5rem; margin-bottom: 4px;">Happy Birthday, Ansh! 🎬💖</h3>
+      <p class="cat-body-text" style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 12px;">
+        For the sweetest superhero who owns my heart...
+      </p>
+
+      <div class="cinematic-video-frame" style="border: 2px solid var(--neon-cyan); border-radius: 16px; overflow: hidden; box-shadow: 0 0 25px rgba(56, 189, 248, 0.4); background: #000;">
+        <video id="realBirthdayVideoModal" controls playsinline preload="metadata" class="responsive-video-player" style="width: 100%; display: block; border-radius: 14px; max-height: 60vh;">
+          <source src="media/birthday-video.mp4" type="video/mp4">
+          <source src="media/VID_20260901_071222_761_bsl~2.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <button class="comic-action-btn btn-yes" onclick="closeBirthdayVideoModal()" style="margin: 16px auto 0; max-width: 260px;">
+        <span class="btn-text">CLOSE & CONTINUE 🥹🖤</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- CINEMATIC TRANSITION SPLASH SCREEN             -->
+  <!-- ============================================== -->
+  <div class="cinematic-splash-screen" id="cinematicSplash">
+    <div class="splash-content-box">
+      <div class="splash-lightning">⚡</div>
+      <h2 class="splash-banner-text" id="splashBannerText">MISSION UNLOCKED</h2>
+      <div class="splash-sub-bar" id="splashSubText">INITIALIZING NEXT LEVEL...</div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- THE FAKE ENDING BLACK SCREEN                   -->
+  <!-- ============================================== -->
+  <div class="fake-ending-blackout" id="fakeEndingScreen" style="display: none;">
+    <div class="fake-ending-content">
+      <h2 class="fake-ending-text typing-text" id="fakeEndingLine1">You thought that was the end?</h2>
+      <p class="fake-ending-sub" id="fakeEndingLine2" style="opacity: 0;">Babyyy...Every mission has a reward...</p>
+      <p class="fake-ending-sub" id="fakeEndingLine3" style="opacity: 0; color: #ffd152; font-weight: 700; font-size: 1.4rem; margin-top: 8px;">And this one is yours, Ansh.</p>
+    </div>
+  </div>
+
+  <!-- Configuration and Script Engine -->
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
